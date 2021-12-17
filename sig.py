@@ -248,7 +248,6 @@ class Signature(object): # discrete signature
 			v = self.sig0(data.t2i[t1], data.t2i[t2], data.w2mi(w))
 		else:
 			v = self.sig0_simple(data.t2i[t1], data.t2i[t2], data.w2mi(w))
-		#self.prS(v, t1, t2, w)
 		return(v)
 	
 	def sig0(self, m, n, iss): # faster algorithm using container self.v
@@ -263,7 +262,6 @@ class Signature(object): # discrete signature
 			j, s = self.i2js(i)
 			if s == 0: # suffix is '-'
 				v = self.mu_delta_t[n-1] * ( self.sig0(m, n-1, iss) + data.delta_X[n-1,j] * self.sig0(m, n-1, w) )
-				#v = self.mu_delta_t[n-1] * self.sig0(m, n-1, iss) + data.delta_X[n-1,j] * self.sig0(m, n-1, w)
 			else: # suffix is '+'
 				v = self.mu_delta_t[n-1] * self.sig0(m, n-1, iss) + data.delta_X[n-1,j] * self.sig0(m, n, w)
 		c[0] = True # it is computed
